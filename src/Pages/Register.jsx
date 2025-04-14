@@ -80,7 +80,7 @@ const Register = () => {
 
     // Personal info validation with regex
     if (!/^[A-Za-z\s'-]+$/.test(user.Personal.name)) {
-      errors.email = "*Name is invalid";
+      errors.name = "*Name is invalid";
     }
     if (!/\S+@\S+\.\S+/.test(user.Personal.email)) {
       errors.email = "*Email is invalid";
