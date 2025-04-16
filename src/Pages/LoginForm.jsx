@@ -47,8 +47,9 @@ const LoginForm = () => {
 
       if (response.data === "User Found") {
         Login(user.username);
+      } else {
+        setError({ ...error, main: "Username or password is Wrong." });
       }
-      setError({ ...error, main: "Username or password is Wrong." });
     } catch (err) {
       console.log(err);
       setError({

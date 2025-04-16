@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, {
-    isAuthorized: "false",
+    isAuthorized: false,
     username: null,
     profile: null,
   });
@@ -15,9 +15,14 @@ export const AuthProvider = ({ children }) => {
     console.log("Successfully Logged...");
   };
 
+  const Logout = () => {
+    dispatch({ type: "Logout" });
+    console.log("Successfully Logged Out...");
+  };
+
   return (
     <>
-      <AuthContext.Provider value={{ state, Login }}>
+      <AuthContext.Provider value={{ state, Login, Logout }}>
         {children}
       </AuthContext.Provider>
     </>
