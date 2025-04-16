@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useAuth } from "../Context/AuthContext";
 
 const Profile = () => {
-  return <div>Profile</div>;
+  const { state, fetchProfile, isLoading } = useAuth();
+
+  useEffect(() => {
+    if (!state.profile) {
+      fetchProfile();
+    }
+  }, []);
+
+  if (isLoading) return <p>Loading...</p>;
+
+  return (
+    <div>
+      <h1>{state.profile?.personal.name}</h1>
+    </div>
+  );
 };
 
 export default Profile;

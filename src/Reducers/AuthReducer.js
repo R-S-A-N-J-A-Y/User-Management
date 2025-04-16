@@ -13,6 +13,11 @@ const authReducer = (state, action) => {
       username: null,
       profile: null,
     };
+  } else if (action.type === "FetchProfile") {
+    return {
+      ...state,
+      profile: action.payload,
+    };
   }
 };
 
