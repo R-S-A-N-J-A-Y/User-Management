@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 
 const LoginForm = () => {
   const { Login } = useAuth();
+  const Navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -34,8 +36,12 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!Validate()) return;
-    await callBackend();
-    setUser({ username: "", password: "" });
+    const result = await callBackend();
+    if (result) {
+      Login(user.username);
+      Navigate("/dashboard");
+      setUser({ username: "", password: "" });
+    }
   };
 
   const callBackend = async () => {
@@ -46,7 +52,7 @@ const LoginForm = () => {
       });
 
       if (response.data === "User Found") {
-        Login(user.username);
+        return true;
       } else {
         setError({ ...error, main: "Username or password is Wrong." });
       }
@@ -57,6 +63,7 @@ const LoginForm = () => {
         main: "Something Goes Down Try again After Some time",
       });
     }
+    return false;
   };
 
   return (
