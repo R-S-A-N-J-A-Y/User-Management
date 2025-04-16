@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useAuth } from "../Context/AuthContext";
 
-const Login = () => {
+const LoginForm = () => {
+  const { Login } = useAuth();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -20,22 +23,44 @@ const Login = () => {
       return false;
     }
 
-    if (!/^[A-Za-z\s'-]+$/.test(user.username)) {
-      Errors.username = "*Username is invalid";
-    }
+    // if (!/^[A-Za-z\s'-]+$/.test(user.username)) {
+    //   Errors.username = "*Username is invalid";
+    // }
 
     setError(Errors);
     return Object.keys(Errors).length == 0;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!Validate()) return;
+    await callBackend();
     setUser({ username: "", password: "" });
+  };
+
+  const callBackend = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/auth/", {
+        username: user.username,
+        password: user.password,
+      });
+
+      if (response.data === "User Found") {
+        Login(user.username);
+      }
+      setError({ ...error, main: "Username or password is Wrong." });
+    } catch (err) {
+      console.log(err);
+      setError({
+        ...error,
+        main: "Something Goes Down Try again After Some time",
+      });
+    }
   };
 
   return (
     <div>
+      {error.main && <p>{error.main}</p>}
       <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input
@@ -59,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
