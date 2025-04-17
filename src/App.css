@@ -1,3 +1,37 @@
+/* Body  */
+
+body {
+}
+
+h1,
+h3 {
+  font-family: "Lilita One", sans-serif;
+}
+
+/* Main Layout */
+
+.main-layout {
+  min-height: 100vh;
+}
+
+.sidebar-div {
+  flex: 1;
+}
+
+/* Sidebar  */
+
+.sidebar {
+  height: 85%;
+  font-size: 25px;
+}
+
+.sidebar a {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+/* AlertBox  */
+
 .alert-box {
   position: fixed;
   top: 3%;
@@ -14,4 +48,10 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Footer  */
+
+.footer {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
