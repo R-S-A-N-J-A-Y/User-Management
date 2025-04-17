@@ -6,7 +6,7 @@ import { CgUserlane } from "react-icons/cg";
 const Sidebar = () => {
   const { state, Logout } = useAuth();
   return (
-    <nav className="sidebar p-4 navbar navbar-expand-lg d-flex flex-column justify-content-between align-items-center mt-4 p-2">
+    <nav className="sidebar p-5 navbar navbar-expand-lg d-flex flex-column justify-content-between align-items-center">
       <div>
         <CgUserlane size={60} />
       </div>

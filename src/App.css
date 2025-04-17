@@ -16,18 +16,26 @@ h3 {
 
 /* Main Layout */
 
+.main {
+  margin: 50px 50px 0px 300px;
+  flex: 1;
+}
+
 .main-layout {
   min-height: 100vh;
 }
 
-.sidebar-div {
-  flex: 1;
-}
-
 /* Sidebar  */
 
+.sidebar-div {
+  position: fixed;
+  top: 10%;
+  left: 2%;
+  height: 80vh;
+}
+
 .sidebar {
-  height: 85%;
+  height: 100%;
   font-size: 25px;
 }
 
