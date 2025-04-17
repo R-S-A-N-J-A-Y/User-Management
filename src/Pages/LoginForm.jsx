@@ -6,6 +6,8 @@ import { useAuth } from "../Context/AuthContext";
 const LoginForm = () => {
   const { Login } = useAuth();
   const Navigate = useNavigate();
+  const [alertBox, setAlertBox] = useState(false);
+
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -37,6 +39,7 @@ const LoginForm = () => {
     event.preventDefault();
     if (!Validate()) return;
     const result = await callBackend();
+    setAlertBox(false);
     if (result) {
       Login(user.username);
       Navigate("/dashboard");
@@ -45,6 +48,7 @@ const LoginForm = () => {
   };
 
   const callBackend = async () => {
+    setAlertBox(true);
     try {
       const response = await axios.post("http://localhost:3000/auth/", {
         username: user.username,
@@ -68,6 +72,7 @@ const LoginForm = () => {
 
   return (
     <div>
+      {alertBox && <div className="">Verifying user in the database..</div>}
       {error.main && <p>{error.main}</p>}
       <form onSubmit={handleSubmit}>
         <label>Username</label>
