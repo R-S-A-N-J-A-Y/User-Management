@@ -39,8 +39,8 @@ const LoginForm = () => {
     event.preventDefault();
     if (!Validate()) return;
     const result = await callBackend();
-    setAlertBox(false);
     if (result) {
+      setAlertBox(false);
       Login(user.username);
       Navigate("/dashboard");
       setUser({ username: "", password: "" });
@@ -48,31 +48,41 @@ const LoginForm = () => {
   };
 
   const callBackend = async () => {
-    setAlertBox(true);
+    let showAlertTimeout;
     try {
+      showAlertTimeout = setTimeout(() => {
+        setAlertBox(true);
+      }, 300); // Only show if slow enough to be noticeable
+
       const response = await axios.post("http://localhost:3000/auth/", {
         username: user.username,
         password: user.password,
       });
 
+      clearTimeout(showAlertTimeout);
+      setAlertBox(false); // Hide alert
+
       if (response.data === "User Found") {
         return true;
       } else {
-        setError({ ...error, main: "Username or password is Wrong." });
+        setError({ ...error, main: "Username or password is wrong." });
+        return false;
       }
     } catch (err) {
-      console.log(err);
-      setError({
-        ...error,
-        main: "Something Goes Down Try again After Some time",
-      });
+      clearTimeout(showAlertTimeout);
+      setAlertBox(false);
+      setError({ ...error, main: "Something went wrong. Try again later." });
+      return false;
     }
-    return false;
   };
 
   return (
     <div>
-      {alertBox && <div className="">Verifying user in the database..</div>}
+      {alertBox && (
+        <div className="alert-box bg-dark text-white p-3 rounded-3">
+          Verifying user in the database...
+        </div>
+      )}
       {error.main && <p>{error.main}</p>}
       <form onSubmit={handleSubmit}>
         <label>Username</label>
