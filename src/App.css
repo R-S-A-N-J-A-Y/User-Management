@@ -36,7 +36,15 @@ h3 {
   font-weight: bolder;
 }
 
-/* AlertBox  */
+/* Register */
+
+.legend {
+  position: absolute;
+  top: -20px;
+  left: 5px;
+}
+
+/* Login AlertBox  */
 
 .alert-box {
   position: fixed;
