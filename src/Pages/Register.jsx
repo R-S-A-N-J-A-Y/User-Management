@@ -13,7 +13,7 @@ const Register = () => {
           collaboration
         </h3>
       </div>
-      <div className="middle p-0">
+      <div className="middle px-5 py-2">
         <RegisterForm />
       </div>
       <div className="bottom">

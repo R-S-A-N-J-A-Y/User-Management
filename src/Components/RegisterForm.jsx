@@ -150,6 +150,7 @@ const RegisterForm = () => {
   };
 
   const callBackend = async () => {
+    console.log(user);
     try {
       const response = await axios.post(
         "http://localhost:3000/api/createuser",
@@ -158,7 +159,7 @@ const RegisterForm = () => {
       console.log(response);
       return true;
     } catch (err) {
-      console.log(err);
+      console.log("Error", err);
     }
     return false;
   };
