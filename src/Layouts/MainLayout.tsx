@@ -9,7 +9,9 @@ const MainLayout = ({ children }) => {
         <div className="col-2 me-3 border border-dark rounded-3">
           <Header />
         </div>
-        <main className="col-9 ms-5">{children}</main>
+        <main className="col-9 ms-5 border border-dark rounded-3">
+          {children}
+        </main>
       </div>
 
       <Footer />

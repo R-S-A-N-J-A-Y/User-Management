@@ -77,31 +77,35 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div style={{ width: "800px" }} className="mx-auto mt-3 rounded-3">
       {alertBox && (
         <div className="alert-box bg-dark text-white p-3 rounded-3">
           Verifying user in the database...
         </div>
       )}
-      {error.main && <p>{error.main}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>Username</label>
+      {error.main && (
+        <p className="fs-5 fw-bolder text-danger">*{error.main}</p>
+      )}
+      <form onSubmit={handleSubmit} className="d-flex flex-column gap-2">
+        <label className="form-label fw-bold fs-5">Username</label>
         <input
+          className="form-control"
           type="text"
           name="username"
           value={user.username}
           onChange={handleChange}
         />
-        {error.username && <p>{error.username}</p>}
-        <label>Password</label>
+        {error.username && <p className="text-danger">{error.username}</p>}
+        <label className="form-label fw-bold fs-5">Password</label>
         <input
+          className="form-control"
           type="text"
           name="password"
           value={user.password}
           onChange={handleChange}
         />
-        {error.password && <p>{error.password}</p>}
-        <button>Submit</button>
+        {error.password && <p className="text-danger">{error.password}</p>}
+        <button className="btn btn-primary mt-3">Submit</button>
       </form>
     </div>
   );
