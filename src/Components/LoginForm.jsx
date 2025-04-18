@@ -41,7 +41,7 @@ const LoginForm = () => {
     const result = await callBackend();
     if (result) {
       setAlertBox(false);
-      Login(user.username);
+      Login(user.username, user.password);
       Navigate("/dashboard");
       setUser({ username: "", password: "" });
     }

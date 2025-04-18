@@ -10,7 +10,7 @@ const Profile = () => {
     }
   }, []);
 
-  if (isLoading || !profile) return <p>Loading...</p>;
+  if (isLoading || !profile) return <p className="p-5">Loading...</p>;
 
   const { personal, address, credential } = profile;
   const [year, month, day] = personal.date.split("T")[0].split("-");

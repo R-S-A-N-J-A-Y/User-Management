@@ -8,12 +8,16 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, {
     isAuthorized: false,
     username: null,
+    password: null,
     profile: null,
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const Login = (username) => {
-    dispatch({ type: "Login", payload: username });
+  const Login = (username, password) => {
+    dispatch({
+      type: "Login",
+      payload: { username: username, password: password },
+    });
     console.log("Successfully Logged...");
   };
 
@@ -25,9 +29,13 @@ export const AuthProvider = ({ children }) => {
   const fetchProfile = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        username: state.username,
-      });
+      const response = await axios.post(
+        "https://user-management-server-production-6862.up.railway.app/auth/login",
+        {
+          username: state.username,
+          password: state.password,
+        }
+      );
       dispatch({ type: "FetchProfile", payload: response.data });
       console.log("Fetched profile:", response.data);
     } catch (error) {
