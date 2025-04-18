@@ -28,10 +28,15 @@ const RegisterForm = () => {
       password: "",
     },
   });
+
   const [error, setError] = useState({});
 
   const handleChange = (section, field, value) => {
     setUser({ ...user, [section]: { ...user[section], [field]: value } });
+    if (field in error) {
+      const { [field]: _, ...rest } = error;
+      setError(rest);
+    }
   };
 
   const validate = () => {
@@ -159,7 +164,27 @@ const RegisterForm = () => {
       console.log(response);
       return true;
     } catch (err) {
-      console.log("Error", err);
+      const response = err.response.data;
+      if (response.code === 11000) {
+        if ("personal.phone" in response.keyValue) {
+          setError({
+            ...error,
+            phone: "*The Entered Mobile Number is Already Registered.",
+          });
+        } else if ("personal.email" in response.keyValue) {
+          setError({
+            ...error,
+            email: "*The Entered Email is Already Registered.",
+          });
+        } else {
+          setError({
+            ...error,
+            username: "*This Username is Not Available",
+          });
+        }
+      } else {
+        console.log("----------- ", err);
+      }
     }
     return false;
   };
