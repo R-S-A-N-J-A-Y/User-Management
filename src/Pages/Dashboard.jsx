@@ -1,6 +1,6 @@
 import React from "react";
 import Greeting from "../Components/Greeting";
-import UserActions from "../Components/userActions";
+import UserActions from "../Components/UserActions";
 
 const Dashboard = () => {
   return (
