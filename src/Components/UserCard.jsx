@@ -8,7 +8,7 @@ const UserCard = ({ name, message }) => {
     if (name === "Create New Account") Navigate("/register");
     else if (name === "Update Account") Navigate("/update");
     else if (name === "Manage Account") Navigate("/manage");
-    else Navigate("./profile");
+    else Navigate("/view");
   };
 
   return (

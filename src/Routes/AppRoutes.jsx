@@ -7,6 +7,8 @@ import Login from "../Pages/Login";
 import Profile from "../Pages/Profile";
 import Dashboard from "../Pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import NotDevpage from "../Components/NotDevPage";
+import ErrorPage from "../Components/ErrorPage";
 
 const AppRoutes = () => {
   return (
@@ -33,6 +35,10 @@ const AppRoutes = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/update" element={<NotDevpage />}></Route>
+          <Route path="/manage" element={<NotDevpage />}></Route>
+          <Route path="/view" element={<NotDevpage />}></Route>
+          <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
       </MainLayout>
     </Router>
