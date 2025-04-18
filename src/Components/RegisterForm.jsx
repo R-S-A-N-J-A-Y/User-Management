@@ -158,7 +158,7 @@ const RegisterForm = () => {
     console.log(user);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/createuser",
+        "https://user-management-server-production-6862.up.railway.app/api/createuser",
         user
       );
       console.log(response);

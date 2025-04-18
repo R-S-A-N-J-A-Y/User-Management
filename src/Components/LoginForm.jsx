@@ -54,10 +54,13 @@ const LoginForm = () => {
         setAlertBox(true);
       }, 300); // Only show if slow enough to be noticeable
 
-      const response = await axios.post("http://localhost:3000/auth/", {
-        username: user.username,
-        password: user.password,
-      });
+      const response = await axios.post(
+        "https://user-management-server-production-6862.up.railway.app/auth/",
+        {
+          username: user.username,
+          password: user.password,
+        }
+      );
 
       clearTimeout(showAlertTimeout);
       setAlertBox(false); // Hide alert
