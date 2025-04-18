@@ -72,6 +72,26 @@ h3 {
   }
 }
 
+/* Dashboard */
+
+.left p span {
+  padding: 0;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.description {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.dashboard-img-floater {
+  position: absolute;
+  height: 320px;
+  width: 303px;
+  right: 70px;
+  bottom: 0;
+}
+
 /* Footer  */
 
 .footer {
