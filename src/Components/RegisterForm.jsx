@@ -128,7 +128,7 @@ const RegisterForm = () => {
     }
     const result = await callBackend();
     if (result) {
-      Login(user.credential.username);
+      Login(user.credential.username, user.credential.password);
       Navigate("/dashboard");
       setUser({
         personal: {
